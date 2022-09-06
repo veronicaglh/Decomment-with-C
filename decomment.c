@@ -110,3 +110,19 @@ void sq_bslashStateHandler(int character,enum States *state,int *line){
     }
     *state = SQUOTE;
 }
+
+/*Function for the squote state*/
+void squoteStateHandler(int character,enum States *state){
+    if(character == '\''){
+        *state = NORMAL;
+        putchar(character);
+    }
+    else if(character == '\\'){
+        *state = SQ_BSLASH;
+    }
+    else{
+        *state = SQUOTE;
+        putchar(character);
+    }
+
+}
