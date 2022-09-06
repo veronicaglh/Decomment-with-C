@@ -83,3 +83,18 @@ void slashStateHandler(int character,enum States *state){
         putchar(character);
     }
 }
+
+/*Function for the stared state*/
+void staredStateHandler(int character,enum States *state){
+    if(character == '/'){
+        *state = NORMAL;
+    }
+    else if(character == '*'){
+        *state = STARED;
+    }
+    else{
+        *state = STARBG;
+    }
+
+}
+
