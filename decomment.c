@@ -220,6 +220,7 @@ int main(int argc, char *argv[]){
     printf("For example if you enter: abc/*defghi The output will be: abc.\n");
     printf("The program also can de comment other types of user input\n");
     printf("Please enter your text below: \n");
+    printf("\n");
     FILE  *file;
     /*Initialize the enum*/
     enum States state;
