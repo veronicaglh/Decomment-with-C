@@ -126,3 +126,17 @@ void squoteStateHandler(int character,enum States *state){
     }
 
 }
+
+/*Function for the s_bslash state*/
+void s_bslashStateHandler(int character,enum States *state,int *line){
+    if(character =='n'){
+        putchar('\n');
+        (*line)++;
+    }
+    else{
+        putchar('\\');
+        putchar(character);
+    }
+    *state = STARBG;
+}
+
