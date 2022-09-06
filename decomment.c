@@ -98,3 +98,15 @@ void staredStateHandler(int character,enum States *state){
 
 }
 
+/*Function for the sq_bslash state*/
+void sq_bslashStateHandler(int character,enum States *state,int *line){
+    if(character =='n'){
+        putchar('\n');
+        (*line)++;
+    }
+    else{
+        putchar('\\');
+        putchar(character);
+    }
+    *state = SQUOTE;
+}
