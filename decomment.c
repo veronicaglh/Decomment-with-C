@@ -50,3 +50,19 @@ void starbgStateHandler(int character,enum States *state){
     }
 }
 
+/*Function for the dquote state*/
+void dquoteStateHandler(int character,enum States *state){
+    if(character == '"'){
+        *state = NORMAL;
+        putchar(character);
+    }
+    else if(character == '\\'){
+        *state = DQ_BSLASH;
+    }
+    else{
+        *state = DQUOTE;
+        putchar(character);
+        
+    }
+
+}
