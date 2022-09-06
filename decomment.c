@@ -214,3 +214,48 @@ int checkState(int character ,enum States *state, int *line){
          s_bslashStateHandler(character,state,line);
     }
 }
+
+int main(int argc, char *argv[]){
+    printf("This program will decomment your input.\n");
+    printf("For example if you enter: abc/*defghi The output will be: abc.\n");
+    printf("The program also can de comment other types of user input\n");
+    printf("Please enter your text below: \n");
+    FILE  *file;
+    /*Initialize the enum*/
+    enum States state;
+    state=NORMAL;
+    /*Initialize line number at 0*/
+    int line = 0;
+    /*character variable*/
+    int character;
+    /*If no additional arguments are given, the code will be read from stdin*/
+    if(argc==1) {
+        /*Decomment the input*/
+		while ((character=getchar())!=EOF){
+            checkState(character,&state, &line);
+        }
+	} 
+    /*If a file has been specified, the code will be read form the file*/
+    else if(argc==2) {
+        /*Open the file as readonly*/
+		file = fopen(argv[1], "r");
+        /*Handle file input error*/
+		if(file == NULL) {
+            fprintf(stderr, "Cannot open the file\n");
+            exit(-1);
+		}
+        /*Decomment the input*/
+        while ((character=getc(file))!=EOF){
+            checkState(character,&state, &line);
+        }
+        /*close file stream*/
+        fclose(file);
+    }   
+  /* If the loop finshed at starbg or stared state, we know there is unterminated comment*/
+        if(state == STARBG || state == STARED){
+            /*Print error line to stderr*/
+            fprintf(stderr, "Error: line %d: unterminated comment\n",line);
+            exit(-1);     
+  }
+  return 0;
+}
