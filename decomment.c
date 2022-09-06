@@ -11,3 +11,30 @@ enum States
 {
     NORMAL, SLASH, STARBG, STARED, DQUOTE, SQUOTE, BSLASH, DQ_BSLASH, SQ_BSLASH, S_BSLASH 
 };
+
+
+/* We will need functions to handle each of the states */
+
+/*Function for the normal state*/
+void normalStateHandler(int character,enum States *state){
+    if(character  =='/'){
+        *state = SLASH;
+    } 
+    else if(character  == '"'){
+        *state = DQUOTE;
+        putchar(character);
+    }
+    else if(character  == '\''){
+        *state = SQUOTE;
+        putchar(character);
+    }
+    else if(character  == '\\'){
+        *state = BSLASH;
+    }
+    else{
+        *state = NORMAL;
+        putchar(character);
+    }
+}
+
+
