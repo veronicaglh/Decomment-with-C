@@ -37,4 +37,16 @@ void normalStateHandler(int character,enum States *state){
     }
 }
 
+/*Function for the starbg state*/
+void starbgStateHandler(int character,enum States *state){
+    if(character == '*'){
+        *state = STARED;
+    }
+    else if(character == '\\'){
+        *state = S_BSLASH;
+    }
+    else{
+        *state = STARBG;
+    }
+}
 
