@@ -140,3 +140,17 @@ void s_bslashStateHandler(int character,enum States *state,int *line){
     *state = STARBG;
 }
 
+/*Function for the bslash state*/
+void bslashStateHandler(int character,enum States *state,int *line){
+    if(character =='n'){
+        *state = NORMAL;
+        putchar('\n');
+        (*line)++;
+    }
+    else{
+        *state = NORMAL;
+        putchar('\\');
+        putchar(character);
+    }
+}
+
