@@ -66,3 +66,20 @@ void dquoteStateHandler(int character,enum States *state){
     }
 
 }
+
+/*Function for the slash state*/
+void slashStateHandler(int character,enum States *state){
+    if(character == '*'){
+        *state = STARBG;
+        putchar(' ');
+    }
+    else if(character == '/'){
+        *state = SLASH;
+        putchar(character);
+    }
+    else{
+        *state = NORMAL;
+        putchar('/');
+        putchar(character);
+    }
+}
