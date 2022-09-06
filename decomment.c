@@ -166,3 +166,51 @@ void dq_bslashStateHandler(int character,enum States *state,int *line){
     }
     *state = DQUOTE;
 }
+
+/*Will call the appropriate function depending on the state of the DFA*/
+
+int checkState(int character ,enum States *state, int *line){
+    if(character =='\n'){ /*Increment line number*/
+            (*line)++;
+    }
+    if(*state == NORMAL){
+        /*Handle NORMAL state*/
+        normalStateHandler(character,state);
+    }
+    else if(*state == SLASH){
+         /*Handle SLASH state*/
+         slashStateHandler(character,state);
+    }
+    else if(*state == STARBG){
+         /*Handle STARBG state*/
+         starbgStateHandler(character,state);
+    }
+    else if(*state == STARED){
+         /*Handle STARED state*/
+         staredStateHandler(character,state);
+    }
+    else if(*state == DQUOTE){
+         /*Handle DQUOTE state*/
+         dquoteStateHandler(character,state);
+    }
+    else if(*state == SQUOTE){
+         /*Handle SQUOTE state*/
+          squoteStateHandler(character,state);
+    }
+    else if(*state == BSLASH){
+         /*Handle BSLASH state*/
+         bslashStateHandler(character,state,line);
+    }
+    else if(*state == DQ_BSLASH){
+         /*Handle DQ_BSLASH state*/
+         dq_bslashStateHandler(character,state,line);
+    }
+    else if(*state == SQ_BSLASH){
+         /*Handle SQ_BSLASH state*/
+         sq_bslashStateHandler(character,state,line);
+    }
+    else if(*state == S_BSLASH){
+         /*Handle S_BSLASH state*/
+         s_bslashStateHandler(character,state,line);
+    }
+}
